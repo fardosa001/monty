@@ -35,4 +35,11 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+
+void push(stack_t **stack, unsigned int line_number, int val);
+void pall(stack_t **stack, unsigned int line_number);
+void pint(stack_t **stack, unsigned int line_number);
+void pop(stack_t **stack, unsigned int line_number);
+void cal_func(stack_t **stack, unsigned int line_number, char *op);
+
 #endif

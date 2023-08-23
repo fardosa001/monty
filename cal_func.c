@@ -14,6 +14,8 @@ void cal_func(stack_t **stack, unsigned int line_number, char **op)
 	instruction_t cal_op[] = {
 		{"push", push},
 		{"pall", pall},
+		{"pint", pint},
+		{"pop", pop},
 		{NULL, NULL}
 	};
 	int i = 0;
