@@ -9,7 +9,7 @@
  */
 void push(stack_t **stack, unsigned int line_number, int val)
 {
-	stack_t *node;
+	stack_t *new_node;
 
 	new_node = malloc(sizeof(stack_t));
 	if (new_node == NULL)
@@ -38,9 +38,9 @@ void pall(stack_t **stack, unsigned int line_number)
 
 	(void)line_number;
 
-	if ((*stack == NULL))
+	if (*stack == NULL)
 		return;
-	
+
 	while (current)
 	{
 		printf("%d\n", current->n);
