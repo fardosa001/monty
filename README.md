@@ -9,4 +9,13 @@ Files containing Monty byte codes usually have the .m extension. Most of the ind
 
 ## compilation
 
-$ git clone 
+$ git clone https://github.com/fardosa001/monty.git
+$ cd monty
+$ gcc -Wall -Werror -Wextra -pedantic -std=c89 *.c -o monty
+
+
+
+
+### contributors
+ Fardosa Hassan
+ Abdullah Mohammed
