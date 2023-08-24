@@ -54,7 +54,7 @@ typedef struct instruction_s
 op_command_t *add_nodeint_end(op_command_t **head, char *cmd, char *n);
 size_t print_listint(op_command_t *h);
 op_command_t *get_command(FILE *fd);
-void *remove_whitespaces(char *str);
+void free_list(op_command_t *h);
 void helper(char *linep, char **cmd, char **n);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);

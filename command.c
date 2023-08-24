@@ -24,6 +24,12 @@ op_command_t *get_command(FILE *fd)
 	free(linep);
 	return (b);
 }
+/**
+ * helper - A helper function.
+ * @linep: the line
+ * @cmd: pointer to save the opcode
+ * @n: pointer to save the argument.
+ */
 void helper(char *linep, char **cmd, char **n)
 {
 	int i = 0;
@@ -43,42 +49,19 @@ void helper(char *linep, char **cmd, char **n)
 		/*****EXECUTE SINGLE COMMAND i.e pall, swap, pop *****/
 	} else
 	{
-		if (!tk2)
-			*n = NULL;
-		else
+		while (tk2[i])
 		{
-			while (tk2[i])
-			{
-				if (tk2[i] < 48 || tk2[i] > 57)
-				{
-					printf(" error and return what is required \n");
-					/*print error message */
-					break;
-				}
+			if (tk2[i] >= '0' && tk2[i] <= '9')
 				i++;
+			else
+			{
+				*n = NULL;
+				printf(" error and return what is required \n");
+				/*print error message */
+				return;
 			}
-			*n = strdup(tk2);
 		}
+		*n = strdup(tk2);
 
 	}
 }
-/**void *remove_whitespaces(char *str)
-{
-	char *token;
-	char *new_str = str;
-	char temp[strlen(str) + 1];
-
-	temp[0] = '\0';
-
-	token = strtok(new_str, " ");
-
-	while (token != NULL) {
-	strcat(temp, token);
-	token = strtok(NULL, " ");
-	if (token != NULL) {
-	    strcat(temp, " ");
-
-	}
-
-	strcpy(str, temp);
-}*/
