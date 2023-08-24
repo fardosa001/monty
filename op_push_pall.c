@@ -8,25 +8,25 @@
  */
 void push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *new_node;
-	int val;
-
+	stack_t *new_elem;
+	int val = globalVal;
+	
 	(void) line_number;
 
-	new_node = malloc(sizeof(stack_t));
-	if (new_node == NULL)
+	new_elem = malloc(sizeof(stack_t));
+	if (new_elem == NULL)
 		printf("Error: malloc failed\n");
 			exit(EXIT_FAILURE);
 
-	new_node->n = val;
-	new_node->prev = NULL;
-	new_node->next = *stack;
+	new_elem->n = val;
+	new_elem->prev = NULL;
+	new_elem->next = *stack;
 
 	if (*stack != NULL)
 	{
-		(*stack)->prev = new_node;
+		(*stack)->prev = new_elem;
 	}
-	*stack = new_node;
+	*stack = new_elem;
 }
 
 /**
