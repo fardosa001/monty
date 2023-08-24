@@ -19,6 +19,24 @@ int main(int ac, char **av)
 
 	fd = fopen(av[1], "r");
 	head = get_command(fd);
+	/**Your code goes here
+	 * head is a linled list containig commands.
+	 *
+	 * loop through each item in list "head"
+	 * for each node in head loop through opcode list and compare if head->cmd == instructions_t
+	 * 	if true
+	 * 		call the fuction pointer of instruction_t->f
+	 * 			opcodefound = 1
+	 * 			pass head->cmd as argument and atoi(head->n)
+	 * 	if false
+	 * 		continue looping for the next item in head list
+	 * 
+	 * Not done with pseudocode but it will give you an idea of how to do it*/
+
+
+
+
+	/* Remove this num and printf  for tou to stop printing list*/
 	num = print_listint(head);
 	printf("%ld\n", num);
 	free_list(head);
