@@ -8,8 +8,8 @@
 #include <sys/types.h>
 #include <string.h>
 
-extern int globalVal;
-int globalVal;
+/**extern int globalVal;
+int globalVal;**/
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer to be casted to unsigned it 
@@ -51,11 +51,11 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
-
+op_command_t *add_nodeint_end(op_command_t **head, char *cmd, char *n);
 size_t print_listint(op_command_t *h);
 op_command_t *get_command(FILE *fd);
 void *remove_whitespaces(char *str);
-void helper(char *linep, op_command_t **newnode);
+void helper(char *linep, char **cmd, char **n);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);

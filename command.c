@@ -8,36 +8,26 @@
  */
 op_command_t *get_command(FILE *fd)
 {
-	char *linep = NULL;
+	char *cmd, *n, *linep = NULL;
 	size_t a = 0;
-	op_command_t *b = NULL, *newnode;
+	op_command_t *b = NULL;
+	ssize_t lin;
 
 
-	while (getline(&linep, &a, fd) > 0)
+	lin = getline(&linep, &a, fd);
+	while (lin > 0)
 	{
-		newnode = malloc(sizeof(op_command_t));
-		newnode->next = NULL;
-		if (newnode == NULL)
-			return NULL;
-		helper(linep, &b);
-		printf("%s, %s\n", newnode->cmd, newnode->n);
-		if (b == NULL)
-			b = newnode;
-		else
-		{
-			while (b->next)
-				b = b->next;
-			b->next = newnode;
-		}
+		helper(linep, &cmd, &n);
+		add_nodeint_end(&b, cmd, n);
+		lin = getline(&linep, &a, fd);
 	}
 	free(linep);
 	return (b);
 }
-void helper(char *linep, op_command_t **newnode)
+void helper(char *linep, char **cmd, char **n)
 {
 	int i = 0;
 	char *tk1, *tk2;
-	op_command_t *node = *newnode;
 
 	tk1 = strtok(linep, " \n\t");
 	if (tk1 == NULL)
@@ -45,16 +35,16 @@ void helper(char *linep, op_command_t **newnode)
 		printf(" error and return what is required \n");
 		exit(-1);
 	}
-	node->cmd = tk1;
+	*cmd = strdup(tk1);
 	tk2 = strtok(NULL, " \n\t");
 	if (tk2 == NULL)
 	{
-		node->n = NULL;
+		*n = NULL;
 		/*****EXECUTE SINGLE COMMAND i.e pall, swap, pop *****/
 	} else
 	{
 		if (!tk2)
-			node->n = NULL;
+			*n = NULL;
 		else
 		{
 			while (tk2[i])
@@ -67,7 +57,7 @@ void helper(char *linep, op_command_t **newnode)
 				}
 				i++;
 			}
-			node->n = tk2;
+			*n = strdup(tk2);
 		}
 
 	}

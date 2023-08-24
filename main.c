@@ -9,6 +9,7 @@ int main(int ac, char **av)
 {
 	op_command_t *head, *next;
 	FILE *fd;
+	size_t num;
 
 	if (ac != 2)
 	{
@@ -18,7 +19,8 @@ int main(int ac, char **av)
 
 	fd = fopen(av[1], "r");
 	head = get_command(fd);
-	print_listint(head);
+	num = print_listint(head);
+	printf("%ld\n", num);
 	while (head)
 	{
 		next = head->next;
@@ -46,4 +48,37 @@ size_t print_listint(op_command_t *h)
 		h = h->next;
 	}
 	return (numNodes);
+}
+
+/**
+ * add_nodeint_end - A function that adds a new
+ * node at the end of a listint_t list.
+ * @head: The list.
+ * @n: The nuber to be added to the list.
+ * Return: the address of the new element
+ * or NULL if it failed
+ */
+op_command_t *add_nodeint_end(op_command_t **head, char *cmd, char *n)
+{
+        op_command_t *new = malloc(sizeof(op_command_t));
+        op_command_t *start = *head;
+
+        if (new == NULL)
+                return (NULL);
+
+        new->n = n;
+        new->cmd = cmd;
+	new->next = NULL;
+        if (*head == NULL)
+        {
+                *head = new;
+                return (*head);
+        }
+        while (start->next)
+        {
+                start = start->next;
+        }
+        start->next = new;
+        return (*head);
+
 }
