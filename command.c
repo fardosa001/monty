@@ -1,4 +1,5 @@
 #include "monty.h"
+#include <stdio.h>
 /**
  * get_command - A fuction that returns a linked
  * list of struct of commands
@@ -9,17 +10,16 @@ op_command_t *get_command(FILE *fd)
 {
 	char *linep = NULL;
 	size_t a = 0;
-	op_command_t *b = NULL, *newnode = malloc(sizeof(op_command_t));
+	op_command_t *b = NULL, *newnode;
 
-	if (newnode == NULL)
-	{
-		/* print error and return what is required */
-		return (NULL);
-	}
 
-	while (getline(&linep, &a, fd) != -1)
+	while (getline(&linep, &a, fd) > 0)
 	{
-		helper(linep, &newnode);
+		newnode = malloc(sizeof(op_command_t));
+		newnode->next = NULL;
+		if (newnode == NULL)
+			return NULL;
+		helper(linep, &b);
 		printf("%s, %s\n", newnode->cmd, newnode->n);
 		if (b == NULL)
 			b = newnode;
