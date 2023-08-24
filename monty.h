@@ -8,8 +8,8 @@
 #include <sys/types.h>
 #include <string.h>
 
-/**extern int globalVal;
-int globalVal;**/
+extern int globalVal;
+int globalVal;
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer to be casted to unsigned it 

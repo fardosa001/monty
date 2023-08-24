@@ -7,39 +7,32 @@
  */
 int main(int ac, char **av)
 {
-	op_command_t *head;
+	op_command_t *cmd_list;
 	FILE *fd;
-	size_t num;
+	stack_t *stack;
 
 	if (ac != 2)
 	{
-		/* print error and return what is required */
-		return (0);
+		printf("USAGE: monty file\n");
+		exit(EXIT_FAILURE);
 	}
 
 	fd = fopen(av[1], "r");
-	head = get_command(fd);
-	/**Your code goes here
-	 * head is a linled list containig commands.
-	 *
-	 * loop through each item in list "head"
-	 * for each node in head loop through opcode list and compare if head->cmd == instructions_t
-	 * 	if true
-	 * 		call the fuction pointer of instruction_t->f
-	 * 			opcodefound = 1
-	 * 			pass head->cmd as argument and atoi(head->n)
-	 * 	if false
-	 * 		continue looping for the next item in head list
-	 * 
-	 * Not done with pseudocode but it will give you an idea of how to do it*/
+	if (fd == NULL)
+	{
+		printf("Error: can't open file %s\n",av[1]);
+		exit(EXIT_FAILURE);
+	}	
 
+	cmd_list = get_command(fd);
+	
+	while (cmd_list != NULL)
+	{
+		cal_func(&stack, atoi(cmd_list->n), cmd_list->cmd);
+		cmd_list = cmd_list->next;
+	}
 
-
-
-	/* Remove this num and printf  for tou to stop printing list*/
-	num = print_listint(head);
-	printf("%ld\n", num);
-	free_list(head);
+	free_list(cmd_list);
 	fclose(fd);
 	return (0);
 }
@@ -72,25 +65,25 @@ size_t print_listint(op_command_t *h)
  */
 op_command_t *add_nodeint_end(op_command_t **head, char *cmd, char *n)
 {
-	op_command_t *new = malloc(sizeof(op_command_t));
-	op_command_t *start = *head;
+        op_command_t *new = malloc(sizeof(op_command_t));
+        op_command_t *start = *head;
 
-	if (new == NULL)
-		return (NULL);
-	new->n = n;
-	new->cmd = cmd;
-	new->next = NULL;
-	if (*head == NULL)
-	{
-		*head = new;
-		return (*head);
-	}
-	while (start->next)
-	{
-		start = start->next;
-	}
-	start->next = new;
-	return (*head);
+        if (new == NULL)
+                return (NULL);
+        new->n = n;
+        new->cmd = cmd;
+        new->next = NULL;
+        if (*head == NULL)
+        {
+                *head = new;
+                return (*head);
+        }
+        while (start->next)
+        {
+                start = start->next;
+        }
+        start->next = new;
+        return (*head);
 }
 /**
  * free_list - A function that prints all the elements of a listint_t list.
