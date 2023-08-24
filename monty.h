@@ -1,3 +1,4 @@
+#define _GNU_SOURCE
 #ifndef _MONTY_
 #define _MONTY_
 
@@ -7,6 +8,20 @@
 #include <sys/types.h>
 #include <string.h>
 
+/**
+ * struct stack_s - doubly linked list representation of a stack (or queue)
+ * @n: integer to be casted to unsigned it 
+ * @cmd: the opcode
+ * @next: points to the next element of the list
+ * Description: Singly linked list node structure
+ * containing commands and the number
+ */
+typedef struct op_command_s
+{
+	char *n;
+	char *cmd;
+	struct op_command_s *next;
+} op_command_t;
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -35,7 +50,10 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-
+size_t print_listint(op_command_t *h);
+op_command_t *get_command(FILE *fd);
+void *remove_whitespaces(char *str);
+void helper(char *linep, op_command_t **newnode);
 void push(stack_t **stack, unsigned int line_number, int val);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
