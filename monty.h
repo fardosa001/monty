@@ -54,7 +54,7 @@ size_t print_listint(op_command_t *h);
 op_command_t *get_command(FILE *fd);
 void *remove_whitespaces(char *str);
 void helper(char *linep, op_command_t **newnode);
-void push(stack_t **stack, unsigned int line_number, int val);
+void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);

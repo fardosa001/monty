@@ -5,15 +5,17 @@
  * push - pushes an element to the stack
  * @stack: stack
  * @line_number: line number
- * @val: value
  */
-void push(stack_t **stack, unsigned int line_number, int val)
+void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_node;
+	int val;
+
+	(void) line_number;
 
 	new_node = malloc(sizeof(stack_t));
 	if (new_node == NULL)
-		printf("Error: malloc failed\n")
+		printf("Error: malloc failed\n");
 			exit(EXIT_FAILURE);
 
 	new_node->n = val;

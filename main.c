@@ -1,4 +1,4 @@
-#include "monty.h" 
+#include "monty.h"
 /**
  * main - Entry point
  * @ac: argument count
@@ -26,7 +26,7 @@ int main(int ac, char **av)
 		head = next;
 	}
 	free(head);
-	
+
 	fclose(fd);
 	return (0);
 }
