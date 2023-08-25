@@ -11,14 +11,34 @@ op_command_t *get_command(FILE *fd)
 	size_t a = 0;
 	op_command_t *b = NULL;
 	ssize_t lin;
+	int i, all_spaces;
 
 
 	lin = getline(&linep, &a, fd);
-	while (lin > 0)
+	while (lin > -1)
 	{
-		helper(linep, &cmd, &n);
-		add_nodeint_end(&b, cmd, n);
-		count++;
+		i = 0;
+		all_spaces = 0;
+		if (lin == 1)
+		{
+			lin = getline(&linep, &a, fd);
+			continue;
+		}
+		while (linep[i] == ' ')
+		{
+			if (linep[i + 1] == '\n')
+			{
+				all_spaces = 1;
+				break;
+			}
+			i++;
+		}	
+		if (all_spaces == 0)
+		{
+			helper(linep, &cmd, &n);
+			add_nodeint_end(&b, cmd, n);
+			count++;
+		}
 		lin = getline(&linep, &a, fd);
 	}
 	free(linep);
@@ -32,34 +52,18 @@ op_command_t *get_command(FILE *fd)
  */
 void helper(char *linep, char **cmd, char **n)
 {
-	int i = 0;
 	char *tk1, *tk2;
 
 	tk1 = strtok(linep, " \n\t");
 	if (tk1 == NULL)
 	{
-		printf(" error and return what is required \n");
+		fprintf(stderr,"L%d: usage: push integer\n", count);
 		exit(EXIT_FAILURE);
 	}
 	*cmd = strdup(tk1);
 	tk2 = strtok(NULL, " \n\t");
 	if (tk2 == NULL)
-	{
 		*n = NULL;
-		/*****EXECUTE SINGLE COMMAND i.e pall, swap, pop *****/
-	} else
-	{
-		while (tk2[i])
-		{
-			if (tk2[i] >= '0' && tk2[i] <= '9')
-				i++;
-			else
-			{
-				printf("L%d: unknown instruction %s\n", count, *cmd);
-                                exit(EXIT_FAILURE);
-			}
-		}
+	else
 		*n = strdup(tk2);
-
-	}
 }

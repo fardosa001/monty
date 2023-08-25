@@ -1,5 +1,5 @@
 #include "monty.h"
-int count = 0;
+int count = 1;
 /**
  * main - Entry point
  * @ac: argument count
@@ -11,17 +11,18 @@ int main(int ac, char **av)
 	op_command_t *cmd_list, *cmd_copy;
 	FILE *fd;
 	stack_t *stack = NULL;
+	int i;
 
 	if (ac != 2)
 	{
-		printf("USAGE: monty file\n");
+		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 
 	fd = fopen(av[1], "r");
 	if (fd == NULL)
 	{
-		printf("Error: can't open file %s\n",av[1]);
+		fprintf(stderr, "Error: can't open file %s\n",av[1]);
 		exit(EXIT_FAILURE);
 	}	
 
@@ -33,7 +34,19 @@ int main(int ac, char **av)
 		if (cmd_copy->n == NULL)
 			cal_func(&stack, 0, cmd_copy->cmd);
 		else
+		{
+			i = 0;
+			while (cmd_copy->n[i])
+                	{
+                        	if (cmd_copy->n[i] < '0' || cmd_copy->n[i]> '9')
+                        	{
+					fprintf(stderr,"L%d: usage: push integer\n", count);
+                                	exit(EXIT_FAILURE);
+                        	}
+                                i++;
+                	}
 			cal_func(&stack, atoi(cmd_copy->n), cmd_copy->cmd);
+		}
 		cmd_copy = cmd_copy->next;
 		count++;
 	}

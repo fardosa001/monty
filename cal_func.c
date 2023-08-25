@@ -29,6 +29,6 @@ void cal_func(stack_t **stack, unsigned int line_number, char *op)
 		}
 	}
 
-	printf("L%d: unknown instruction %s\n", count, op);
+	fprintf(stderr, "L%d: unknown instruction %s\n", count, op);
 	exit(EXIT_FAILURE);
 }
