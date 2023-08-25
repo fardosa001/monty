@@ -32,7 +32,7 @@ op_command_t *get_command(FILE *fd)
 				break;
 			}
 			i++;
-		}	
+		}
 		if (all_spaces == 0)
 		{
 			helper(linep, &cmd, &n);
@@ -57,7 +57,7 @@ void helper(char *linep, char **cmd, char **n)
 	tk1 = strtok(linep, " \n\t");
 	if (tk1 == NULL)
 	{
-		fprintf(stderr,"L%d: usage: push integer\n", count);
+		fprintf(stderr, "L%d: usage: push integer\n", count);
 		exit(EXIT_FAILURE);
 	}
 	*cmd = strdup(tk1);
