@@ -1,4 +1,5 @@
 #include "monty.h"
+int count = 0;
 /**
  * main - Entry point
  * @ac: argument count
@@ -7,9 +8,9 @@
  */
 int main(int ac, char **av)
 {
-	op_command_t *cmd_list;
+	op_command_t *cmd_list, *cmd_copy;
 	FILE *fd;
-	stack_t *stack;
+	stack_t *stack = NULL;
 
 	if (ac != 2)
 	{
@@ -25,11 +26,16 @@ int main(int ac, char **av)
 	}	
 
 	cmd_list = get_command(fd);
-	
-	while (cmd_list != NULL)
+	count = 1;
+	cmd_copy = cmd_list;	
+	while (cmd_copy != NULL)
 	{
-		cal_func(&stack, atoi(cmd_list->n), cmd_list->cmd);
-		cmd_list = cmd_list->next;
+		if (cmd_copy->n == NULL)
+			cal_func(&stack, 0, cmd_copy->cmd);
+		else
+			cal_func(&stack, atoi(cmd_copy->n), cmd_copy->cmd);
+		cmd_copy = cmd_copy->next;
+		count++;
 	}
 
 	free_list(cmd_list);

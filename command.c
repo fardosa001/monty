@@ -1,5 +1,4 @@
 #include "monty.h"
-#include <stdio.h>
 /**
  * get_command - A fuction that returns a linked
  * list of struct of commands
@@ -19,6 +18,7 @@ op_command_t *get_command(FILE *fd)
 	{
 		helper(linep, &cmd, &n);
 		add_nodeint_end(&b, cmd, n);
+		count++;
 		lin = getline(&linep, &a, fd);
 	}
 	free(linep);
@@ -39,7 +39,7 @@ void helper(char *linep, char **cmd, char **n)
 	if (tk1 == NULL)
 	{
 		printf(" error and return what is required \n");
-		exit(-1);
+		exit(EXIT_FAILURE);
 	}
 	*cmd = strdup(tk1);
 	tk2 = strtok(NULL, " \n\t");
@@ -55,10 +55,8 @@ void helper(char *linep, char **cmd, char **n)
 				i++;
 			else
 			{
-				*n = NULL;
-				printf(" error and return what is required \n");
-				/*print error message */
-				return;
+				printf("L%d: unknown instruction %s\n", count, *cmd);
+                                exit(EXIT_FAILURE);
 			}
 		}
 		*n = strdup(tk2);

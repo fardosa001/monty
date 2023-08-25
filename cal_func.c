@@ -1,5 +1,4 @@
 #include "monty.h"
-
 /**
  * cal_func - function to execute operation functions
  * @stack: stack
@@ -30,6 +29,6 @@ void cal_func(stack_t **stack, unsigned int line_number, char *op)
 		}
 	}
 
-	printf("L%d: unknown instruction %s\n", line_number, op);
+	printf("L%d: unknown instruction %s\n", count, op);
 	exit(EXIT_FAILURE);
 }
