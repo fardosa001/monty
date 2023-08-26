@@ -18,6 +18,8 @@ void cal_func(stack_t **stack, char *line_number, char *op)
 		{"pop", pop},
 		{"swap", swap},
 		{"add", add},
+		{"nop", NULL},
+		{"sub", sub},
 		{NULL, NULL}
 	};
 
@@ -25,6 +27,8 @@ void cal_func(stack_t **stack, char *line_number, char *op)
 	{
 		if (strcmp(cal_op[i].opcode, op) == 0)
 		{
+			if (strcmp(cal_op[i].opcode, "nop") == 0)
+				return;
 			if (strcmp(cal_op[i].opcode, "push") == 0)
 			{
 				handle_push(stack, line_number, cal_op[i].f);

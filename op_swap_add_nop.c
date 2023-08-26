@@ -41,3 +41,28 @@ void add(stack_t **stack, unsigned int line_number)
 	*stack = (*stack)->next;
 	free(t);
 }
+/**
+ * sub -  subtracts the top element of the stack
+ * from the second top element of the stack.
+ * @stack: stack
+ * @line_number: line number
+ */
+void sub(stack_t **stack, unsigned int line_number)
+{
+	stack_t *t;
+
+	(void)line_number;
+	if ((*stack)->next == NULL || *stack == NULL)
+	{
+		fprintf(stderr, "L%d: can't add, stack too short\n", count);
+		exit(EXIT_FAILURE);
+	}
+	t = *stack;
+	if ((*stack)->next->n > (*stack)->n)
+		(*stack)->next->n -= (*stack)->n;
+	else if ((*stack)->next->n < (*stack)->n)
+		(*stack)->next->n = (*stack)->n - (*stack)->next->n;
+	(*stack)->next->prev = NULL;
+	*stack = (*stack)->next;
+	free(t);
+}
