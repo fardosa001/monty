@@ -61,7 +61,7 @@ void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);
-void cal_func(stack_t **stack, char *line_number, char *op);
+void cal_func(stack_t **stack, char *line_number, char *op, op_command_t *l);
 void free_stack(stack_t *stack);
 
 #endif

@@ -27,7 +27,7 @@ int main(int ac, char **av)
 	cmd_copy = cmd_list;
 	while (cmd_copy != NULL)
 	{
-		cal_func(&stack, cmd_copy->n, cmd_copy->cmd);
+		cal_func(&stack, cmd_copy->n, cmd_copy->cmd, cmd_list);
 		cmd_copy = cmd_copy->next;
 		count++;
 	}

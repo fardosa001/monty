@@ -8,7 +8,7 @@
  * Return: pointer to correct function
  *
  */
-void cal_func(stack_t **stack, char *line_number, char *op)
+void cal_func(stack_t **stack, char *line_number, char *op, op_command_t *l)
 {
 	int i = 0;
 	instruction_t cal_op[] = {
@@ -27,6 +27,8 @@ void cal_func(stack_t **stack, char *line_number, char *op)
 			{
 				if (is_digit(line_number) == -1)
 				{
+					free_list(l);
+					free_stack(*stack);
 					fprintf(stderr, "L%d: usage: push integer\n", count);
 					exit(EXIT_FAILURE);
 				}
@@ -39,6 +41,8 @@ void cal_func(stack_t **stack, char *line_number, char *op)
 			return;
 		}
 	}
+					free_list(l);
+					free_stack(*stack);
 
 	fprintf(stderr, "L%d: unknown instruction %s\n", count, op);
 	exit(EXIT_FAILURE);
