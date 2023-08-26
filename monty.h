@@ -3,7 +3,7 @@
 #define MONTY_H
 
 extern int count;
-
+int count;
 #include <stdlib.h>
 #include <stdio.h>
 #include <fcntl.h>
@@ -61,5 +61,6 @@ void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);
 void cal_func(stack_t **stack, unsigned int line_number, char *op);
+void free_stack(stack_t *stack);
 
 #endif
