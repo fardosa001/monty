@@ -19,6 +19,7 @@ void cal_func(stack_t **stack, char *line_number, char *op,
 		{"pall", pall},
 		{"pint", pint},
 		{"pop", pop},
+		{"swap", swap},
 		{NULL, NULL}
 	};
 
