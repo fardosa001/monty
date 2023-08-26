@@ -67,7 +67,7 @@ size_t print_listint(op_command_t *h)
 	while (h)
 	{
 		numNodes++;
-		printf("%s ,%s\n", h->cmd, h->n);
+		fprintf(stderr, "%s ,%s\n", h->cmd, h->n);
 		h = h->next;
 	}
 	return (numNodes);
