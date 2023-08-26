@@ -52,6 +52,7 @@ typedef struct instruction_s
 } instruction_t;
 
 void swap(stack_t **stack, unsigned int line_number);
+void add(stack_t **stack, unsigned int line_number);
 op_command_t *add_nodeint_end(op_command_t **head, char *cmd, char *n);
 size_t print_listint(op_command_t *h);
 op_command_t *get_command(FILE *fd);
