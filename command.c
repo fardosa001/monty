@@ -19,7 +19,7 @@ op_command_t *get_command(FILE *fd)
 	{
 		i = 0;
 		all_spaces = 0;
-		if (lin <= 1)
+		if (lin == 1)
 		{
 			lin = getline(&linep, &a, fd);
 			continue;
