@@ -58,10 +58,7 @@ void sub(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	t = *stack;
-	if ((*stack)->next->n > (*stack)->n)
-		(*stack)->next->n -= (*stack)->n;
-	else if ((*stack)->next->n < (*stack)->n)
-		(*stack)->next->n = (*stack)->n - (*stack)->next->n;
+	(*stack)->next->n -= (*stack)->n;
 	(*stack)->next->prev = NULL;
 	*stack = (*stack)->next;
 	free(t);
