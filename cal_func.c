@@ -42,9 +42,9 @@ void cal_func(stack_t **stack, char *line_number, char *op, op_command_t *l, FIL
 			return;
 		}
 	}
-	fclose(fd);
-	free_list(l);
-	free_stack(*stack);
 	fprintf(stderr, "L%d: unknown instruction %s\n", count, op);
+	free_list(l);
+	fclose(fd);
+	free_stack(*stack);
 	exit(EXIT_FAILURE);
 }

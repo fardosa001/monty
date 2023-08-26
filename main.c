@@ -102,7 +102,8 @@ void free_list(op_command_t *h)
 	{
 		next = h->next;
 		free(h->cmd);
-		free(h->n);
+		if (h->n != NULL)
+			free(h->n);
 		free(h);
 		h = next;
 	}
