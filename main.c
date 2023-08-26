@@ -20,7 +20,7 @@ int main(int ac, char **av)
 	fd = fopen(av[1], "r");
 	if (fd == NULL)
 	{
-		fprintf(stderr, "Error: can't open file %s\n", av[1]);
+		fprintf(stderr, "Error: Can't open file %s\n", av[1]);
 		exit(EXIT_FAILURE);
 	}
 	cmd_list = get_command(fd);

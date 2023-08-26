@@ -54,14 +54,14 @@ void helper(char *linep, char **cmd, char **n)
 {
 	char *tk1, *tk2;
 
-	tk1 = strtok(linep, " \n\t");
+	tk1 = strtok(linep, " \n");
 	if (tk1 == NULL)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", count);
 		exit(EXIT_FAILURE);
 	}
 	*cmd = strdup(tk1);
-	tk2 = strtok(NULL, " \n\t");
+	tk2 = strtok(NULL, " \n");
 	if (tk2 == NULL)
 		*n = NULL;
 	else
