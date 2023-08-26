@@ -50,6 +50,9 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+void handle_push(stack_t **stack, char *line_number,
+		void (*f)(stack_t **stack,
+			unsigned int line_number));
 
 void swap(stack_t **stack, unsigned int line_number);
 void add(stack_t **stack, unsigned int line_number);
