@@ -4,14 +4,11 @@
  * @stack: stack
  * @op: opcode
  * @line_number: line_number
- * @l: List of commands to be freed
- * @fd: file descriptor to close.
  *
  * Return: pointer to correct function
  *
  */
-void cal_func(stack_t **stack, char *line_number, char *op,
-		op_command_t *l, FILE *fd)
+void cal_func(stack_t **stack, char *line_number, char *op)
 {
 	int i = 0;
 	instruction_t cal_op[] = {
@@ -39,9 +36,6 @@ void cal_func(stack_t **stack, char *line_number, char *op,
 		}
 	}
 	fprintf(stderr, "L%d: unknown instruction %s\n", count, op);
-	free_list(l);
-	fclose(fd);
-	free_stack(*stack);
 	exit(EXIT_FAILURE);
 }
 
