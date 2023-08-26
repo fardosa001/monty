@@ -3,7 +3,7 @@
 #define MONTY_H
 
 extern int count;
-int count;
+#include <stddef.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <fcntl.h>
@@ -54,13 +54,14 @@ typedef struct instruction_s
 op_command_t *add_nodeint_end(op_command_t **head, char *cmd, char *n);
 size_t print_listint(op_command_t *h);
 op_command_t *get_command(FILE *fd);
+int is_digit(char *str);
 void free_list(op_command_t *h);
 void helper(char *linep, char **cmd, char **n);
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);
-void cal_func(stack_t **stack, unsigned int line_number, char *op);
+void cal_func(stack_t **stack, char *line_number, char *op);
 void free_stack(stack_t *stack);
 
 #endif

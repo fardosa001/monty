@@ -1,4 +1,5 @@
 #include "monty.h"
+int count = 1;
 /**
  * main - Entry point
  * @ac: argument count
@@ -10,7 +11,6 @@ int main(int ac, char **av)
 	op_command_t *cmd_list, *cmd_copy;
 	FILE *fd;
 	stack_t *stack = NULL;
-	int i = 0, count = 1;
 
 	if (ac != 2)
 	{
@@ -27,21 +27,7 @@ int main(int ac, char **av)
 	cmd_copy = cmd_list;
 	while (cmd_copy != NULL)
 	{
-		if (cmd_copy->n == NULL)
-			cal_func(&stack, 0, cmd_copy->cmd);
-		else
-		{
-			while (cmd_copy->n[i])
-			{
-				if (cmd_copy->n[i] < '0' || cmd_copy->n[i] > '9')
-				{
-					fprintf(stderr, "L%d: usage: push integer\n", count);
-					exit(EXIT_FAILURE);
-				}
-				i++;
-			}
-			cal_func(&stack, atoi(cmd_copy->n), cmd_copy->cmd);
-		}
+		cal_func(&stack, cmd_copy->n, cmd_copy->cmd);
 		cmd_copy = cmd_copy->next;
 		count++;
 	}
@@ -62,7 +48,7 @@ size_t print_listint(op_command_t *h)
 	while (h)
 	{
 		numNodes++;
-		fprintf(stderr, "%s ,%s\n", h->cmd, h->n);
+		printf("%s ,%s\n", h->cmd, h->n);
 		h = h->next;
 	}
 	return (numNodes);

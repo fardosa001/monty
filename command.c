@@ -67,3 +67,20 @@ void helper(char *linep, char **cmd, char **n)
 	else
 		*n = strdup(tk2);
 }
+/**
+ * is_digit - A finction that checks if a sting is digit
+ * @str: The string
+ * Return: 0 if its string or -1 if its not
+ */
+int is_digit(char *str)
+{
+	int i = 0;
+
+	while (str[i])
+	{
+		if (str[i] < '0' || str[i] > '9')
+			return (-1);
+		i++;
+	}
+	return (0);
+}

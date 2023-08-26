@@ -8,8 +8,9 @@
  * Return: pointer to correct function
  *
  */
-void cal_func(stack_t **stack, unsigned int line_number, char *op)
+void cal_func(stack_t **stack, char *line_number, char *op)
 {
+	int i = 0;
 	instruction_t cal_op[] = {
 		{"push", push},
 		{"pall", pall},
@@ -18,13 +19,23 @@ void cal_func(stack_t **stack, unsigned int line_number, char *op)
 		{NULL, NULL}
 	};
 
-	int i = 0;
-
 	for (i = 0; cal_op[i].opcode != NULL; i++)
 	{
 		if (strcmp(cal_op[i].opcode, op) == 0)
 		{
-			cal_op[i].f(stack, line_number);
+			if (strcmp(cal_op[i].opcode, "push") == 0)
+			{
+				if (is_digit(line_number) == -1)
+				{
+					fprintf(stderr, "L%d: usage: push integer\n", count);
+					exit(EXIT_FAILURE);
+				}
+				else
+					cal_op[i].f(stack, (unsigned int)atoi(line_number));
+				return;
+			}
+
+			cal_op[i].f(stack, 0);
 			return;
 		}
 	}
