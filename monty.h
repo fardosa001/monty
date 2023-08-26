@@ -1,13 +1,14 @@
 #define _GNU_SOURCE
-#ifndef _MONTY_
-#define _MONTY_
+#ifndef MONTY_H
+#define MONTY_H
 
+extern int count;
+int count;
 #include <stdlib.h>
 #include <stdio.h>
 #include <fcntl.h>
 #include <sys/types.h>
 #include <string.h>
-
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer to be casted to unsigned it 
@@ -49,7 +50,6 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
-extern int count;
 
 op_command_t *add_nodeint_end(op_command_t **head, char *cmd, char *n);
 size_t print_listint(op_command_t *h);
@@ -61,5 +61,6 @@ void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);
 void cal_func(stack_t **stack, unsigned int line_number, char *op);
+void free_stack(stack_t *stack);
 
 #endif

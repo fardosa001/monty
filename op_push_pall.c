@@ -9,7 +9,7 @@
 void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_elem;
-	
+
 
 	new_elem = malloc(sizeof(stack_t));
 	if (new_elem == NULL)
@@ -21,17 +21,16 @@ void push(stack_t **stack, unsigned int line_number)
 	new_elem->n = line_number;
 	new_elem->prev = NULL;
 	if (*stack == NULL)
-        {
-                new_elem->next = NULL;
-                *stack = new_elem;
-        }
-        else
-        {
-
-                new_elem->next = *stack;
-                (*stack)->prev = new_elem;
-                *stack = new_elem;
-        }
+	{
+		new_elem->next = NULL;
+		*stack = new_elem;
+	}
+	else
+	{
+		new_elem->next = *stack;
+		(*stack)->prev = new_elem;
+		*stack = new_elem;
+	}
 }
 
 /**
