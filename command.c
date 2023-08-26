@@ -13,7 +13,6 @@ op_command_t *get_command(FILE *fd)
 	ssize_t lin;
 	int i, all_spaces;
 
-
 	lin = getline(&linep, &a, fd);
 	while (lin > -1)
 	{
@@ -22,6 +21,7 @@ op_command_t *get_command(FILE *fd)
 		if (lin == 1)
 		{
 			lin = getline(&linep, &a, fd);
+			count++;
 			continue;
 		}
 		if (linep[0] == '#')
@@ -39,13 +39,13 @@ op_command_t *get_command(FILE *fd)
 			}
 			i++;
 		}
-
 		if (all_spaces == 0)
 		{
 			helper(linep, &cmd, &n);
 			add_nodeint_end(&b, cmd, n);
 			count++;
 		}
+		count++;
 		lin = getline(&linep, &a, fd);
 	}
 	free(linep);
