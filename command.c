@@ -37,7 +37,6 @@ op_command_t *get_command(FILE *fd)
 		{
 			helper(linep, &cmd, &n);
 			add_nodeint_end(&b, cmd, n);
-			count++;
 		}
 		count++;
 		lin = getline(&linep, &a, fd);

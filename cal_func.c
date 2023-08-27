@@ -23,6 +23,7 @@ void cal_func(stack_t **stack, char *line_number, char *op)
 		{"mul", mul},
 		{"div", div_func},
 		{"mod", mod},
+		{"pchar", pchar},
 		{NULL, NULL}
 	};
 
@@ -97,4 +98,25 @@ void mod(stack_t **stack, unsigned int line_number)
 	(*stack)->next->prev = NULL;
 	*stack = (*stack)->next;
 	free(t);
+}
+
+/**
+ * pchar - prints the char at the top of the stack
+ * @stack: stack
+ * @line_number: line number
+ */
+void pchar(stack_t **stack, unsigned int line_number)
+{
+	(void)line_number;
+	if (*stack == NULL)
+	{
+		fprintf(stderr, "L%d: can't pchar, stack empty\n", count);
+		exit(EXIT_FAILURE);
+	}
+	if ((*stack)->n < 33 || (*stack)->n > 127)
+	{
+		fprintf(stderr, "L%d: can't pchar, value out of range\n", count);
+		exit(EXIT_FAILURE);
+	}
+	fprintf(stdout, "%c\n", (*stack)->n);
 }
