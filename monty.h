@@ -68,6 +68,8 @@ int is_digit(char *str);
 void free_list(op_command_t *h);
 void helper(char *linep, char **cmd, char **n);
 void push(stack_t **stack, unsigned int line_number);
+void pchar(stack_t **stack, unsigned int line_number);
+void pstr(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
 void cal_func(stack_t **stack, char *line_number, char *op);

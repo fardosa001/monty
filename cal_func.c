@@ -24,6 +24,7 @@ void cal_func(stack_t **stack, char *line_number, char *op)
 		{"div", div_func},
 		{"mod", mod},
 		{"pchar", pchar},
+		{"pstr", pstr},
 		{NULL, NULL}
 	};
 
