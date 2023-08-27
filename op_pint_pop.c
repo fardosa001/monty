@@ -7,9 +7,10 @@
  */
 void pint(stack_t **stack, unsigned int line_number)
 {
+	(void)line_number;
 	if (*stack == NULL)
 	{
-		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+		fprintf(stderr, "L%d: can't pint, stack empty\n", count);
 		exit(EXIT_FAILURE);
 	}
 	else
@@ -25,9 +26,10 @@ void pop(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp;
 
+	(void)line_number;
 	if (*stack == NULL || stack == NULL)
 	{
-		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
+		fprintf(stderr, "L%d: can't pop an empty stack\n", count);
 		exit(EXIT_FAILURE);
 	}
 	else
