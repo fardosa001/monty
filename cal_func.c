@@ -12,20 +12,9 @@ void cal_func(stack_t **stack, char *line_number, char *op)
 {
 	int i = 0;
 	instruction_t cal_op[] = {
-		{"push", push},
-		{"pall", pall},
-		{"pint", pint},
-		{"pop", pop},
-		{"swap", swap},
-		{"add", add},
-		{"nop", NULL},
-		{"sub", sub},
-		{"mul", mul},
-		{"div", div_func},
-		{"mod", mod},
-		{"pchar", pchar},
-		{"pstr", pstr},
-		{NULL, NULL}
+		{"push", push}, {"pall", pall}, {"pint", pint}, {"pop", pop}, {"swap", swap},
+		{"add", add}, {"nop", NULL}, {"sub", sub}, {"mul", mul}, {"div", div_func},
+		{"mod", mod}, {"pchar", pchar}, {"pstr", pstr}, {NULL, NULL}
 	};
 
 	if (op[0] == '#')
@@ -53,20 +42,25 @@ void cal_func(stack_t **stack, char *line_number, char *op)
 /**
  * handle_push - handles push
  * @stack: the stack
- * @line_number: line number
+ * @line_numb: line number
  * @f: function pointer to push
  */
-void handle_push(stack_t **stack, char *line_number,
+void handle_push(stack_t **stack, char *line_numb,
 		void (*f)(stack_t **stack,
 			unsigned int line_number))
 {
-	if (is_digit(line_number) == -1 || line_number == NULL)
+	if (line_numb == NULL)
+	{
+		fprintf(stderr, "L%d: usage: push integer\n", count);
+		exit(EXIT_FAILURE);
+	}
+	if (is_digit(line_numb) == -1)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", count);
 		exit(EXIT_FAILURE);
 	}
 	else
-		f(stack, atoi(line_number));
+		f(stack, atoi(line_numb));
 }
 /**
  * mod -  mod the top element of the stack
