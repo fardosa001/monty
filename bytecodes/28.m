@@ -1,2 +1,2 @@
-push 32 
+push -3 
 pchar

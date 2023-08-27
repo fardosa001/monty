@@ -78,6 +78,8 @@ int is_digit(char *str)
 
 	if (str == NULL)
 		return (-1);
+	if (str[0] == '-')
+		i = 1;
 	while (str[i])
 	{
 		if (str[i] < '0' || str[i] > '9')
