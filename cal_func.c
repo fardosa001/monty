@@ -42,7 +42,7 @@ void cal_func(stack_t **stack, char *line_number, char *op)
 				return;
 			}
 
-			cal_op[i].f(stack, atoi(line_number));
+			cal_op[i].f(stack, 0);
 			return;
 		}
 	}
