@@ -42,7 +42,7 @@ void cal_func(stack_t **stack, char *line_number, char *op)
 				return;
 			}
 
-			cal_op[i].f(stack, 0);
+			cal_op[i].f(stack, atoi(line_number));
 			return;
 		}
 	}
@@ -60,13 +60,13 @@ void handle_push(stack_t **stack, char *line_number,
 		void (*f)(stack_t **stack,
 			unsigned int line_number))
 {
-	if (is_digit(line_number) == -1)
+	if (is_digit(line_number) == -1 || line_number == NULL)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", count);
 		exit(EXIT_FAILURE);
 	}
 	else
-		f(stack, (unsigned int)atoi(line_number));
+		f(stack, atoi(line_number));
 }
 /**
  * mod -  mod the top element of the stack
