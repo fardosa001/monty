@@ -18,7 +18,7 @@ void pstr(stack_t **stack, unsigned int line_number)
 	s = *stack;
 	while (s)
 	{
-		if (s->n < 33 || s->n > 127 || s->n == 0)
+		if (s->n < 0 || s->n > 127 || s->n == 0)
 		{
 			printf("\n");
 			return;
