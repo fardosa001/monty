@@ -26,6 +26,8 @@ void cal_func(stack_t **stack, char *line_number, char *op)
 		{NULL, NULL}
 	};
 
+	if (op[0] == '#')
+		return;
 	for (i = 0; cal_op[i].opcode != NULL; i++)
 	{
 		if (strcmp(cal_op[i].opcode, op) == 0)
@@ -75,6 +77,11 @@ void mod(stack_t **stack, unsigned int line_number)
 	stack_t *t;
 
 	(void)line_number;
+	if (*stack == NULL)
+	{
+		fprintf(stderr, "L%d: can't mod, stack too short\n", count);
+		exit(EXIT_FAILURE);
+	}
 	if ((*stack)->next == NULL || *stack == NULL)
 	{
 		fprintf(stderr, "L%d: can't mod, stack too short\n", count);

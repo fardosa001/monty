@@ -10,7 +10,12 @@ void swap(stack_t **stack, unsigned int line_number)
 	int c;
 
 	(void)line_number;
-	if ((*stack)->next == NULL || *stack == NULL)
+	if (*stack == NULL)
+	{
+		fprintf(stderr, "L%d: can't swap, stack too short\n", count);
+		exit(EXIT_FAILURE);
+	}
+	if ((*stack)->next == NULL)
 	{
 		fprintf(stderr, "L%d: can't swap, stack too short\n", count);
 		exit(EXIT_FAILURE);
@@ -30,7 +35,12 @@ void add(stack_t **stack, unsigned int line_number)
 	stack_t *t;
 
 	(void)line_number;
-	if ((*stack)->next == NULL || *stack == NULL)
+	if (*stack == NULL)
+	{
+		fprintf(stderr, "L%d: can't add, stack too short\n", count);
+		exit(EXIT_FAILURE);
+	}
+	if ((*stack)->next == NULL)
 	{
 		fprintf(stderr, "L%d: can't add, stack too short\n", count);
 		exit(EXIT_FAILURE);
@@ -52,7 +62,12 @@ void sub(stack_t **stack, unsigned int line_number)
 	stack_t *t;
 
 	(void)line_number;
-	if ((*stack)->next == NULL || *stack == NULL)
+	if (*stack == NULL)
+	{
+		fprintf(stderr, "L%d: can't sub, stack too short\n", count);
+		exit(EXIT_FAILURE);
+	}
+	if ((*stack)->next == NULL)
 	{
 		fprintf(stderr, "L%d: can't sub, stack too short\n", count);
 		exit(EXIT_FAILURE);
@@ -74,7 +89,12 @@ void div_func(stack_t **stack, unsigned int line_number)
 	stack_t *t;
 
 	(void)line_number;
-	if ((*stack)->next == NULL || *stack == NULL)
+	if (*stack == NULL)
+	{
+		fprintf(stderr, "L%d: can't div, stack too short\n", count);
+		exit(EXIT_FAILURE);
+	}
+	if ((*stack)->next == NULL)
 	{
 		fprintf(stderr, "L%d: can't div, stack too short\n", count);
 		exit(EXIT_FAILURE);
@@ -101,7 +121,12 @@ void mul(stack_t **stack, unsigned int line_number)
 	stack_t *t;
 
 	(void)line_number;
-	if ((*stack)->next == NULL || *stack == NULL)
+	if (*stack == NULL)
+	{
+		fprintf(stderr, "L%d: can't mul, stack too short\n", count);
+		exit(EXIT_FAILURE);
+	}
+	if ((*stack)->next == NULL)
 	{
 		fprintf(stderr, "L%d: can't mul, stack too short\n", count);
 		exit(EXIT_FAILURE);

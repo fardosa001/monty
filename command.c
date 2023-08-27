@@ -24,12 +24,6 @@ op_command_t *get_command(FILE *fd)
 			count++;
 			continue;
 		}
-		if (linep[0] == '#')
-		{
-			lin = getline(&linep, &a, fd);
-			count++;
-			continue;
-		}
 		while (linep[i] == ' ')
 		{
 			if (linep[i + 1] == '\n')
